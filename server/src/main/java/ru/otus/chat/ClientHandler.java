@@ -33,6 +33,13 @@ public class ClientHandler {
                         if (message.equals("/exit")) {
                             sendMsg("/exitok");
                             break;
+                        } else if (message.startsWith("/w")) {
+                            String[] arr = message.split(" ", 3);
+                            if (arr.length == 3) {
+                                String recipient = arr[1];
+                                String privateMessage = arr[2];
+                                server.sendPrivateMessage(this, recipient, privateMessage);
+                            }
                         }
 
                     } else {

@@ -44,5 +44,14 @@ public class Server {
         }
     }
 
-
+    public void sendPrivateMessage(ClientHandler sender, String recipientName, String message) {
+        for (ClientHandler client : clients) {
+            if (client.getUsername().equals(recipientName)) {
+                client.sendMsg("Сообщение от [" + sender.getUsername() + "]: " + message);
+                sender.sendMsg("Сообщение для [" + recipientName + "]: " + message);
+                return;
+            }
+        }
+        sender.sendMsg("Получатель " + recipientName + " не найден");
+    }
 }
